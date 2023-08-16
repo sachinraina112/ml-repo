@@ -41,7 +41,7 @@ def start_server():
     # link the log streams to stdout/err so they will be logged to the container logs
     # subprocess.check_call(['ln', '-sf', '/dev/stdout', '/var/log/nginx/access.log'])
     # subprocess.check_call(['ln', '-sf', '/dev/stderr', '/var/log/nginx/error.log'])
-    listen = '0.0.0.0:7777'
+    listen = '0.0.0.0:6666'
     # nginx = subprocess.Popen(['nginx', '-c', '/opt/program/nginx.conf'])
     gunicorn = subprocess.Popen(['gunicorn',
                                  '--timeout', str(model_server_timeout),

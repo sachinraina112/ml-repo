@@ -16,7 +16,7 @@ import flask
 import pandas as pd
 
 # prefix = '/ml/'
-prefix = '../../data/'
+prefix = '../data/'
 model_path = os.path.join(prefix, 'models')
 
 # A singleton for holding the model. This simply loads the model and holds it.
@@ -71,6 +71,11 @@ def transformation():
         s = StringIO(data)
         print(s)
         data = pd.read_csv(s, header=None)
+    elif flask.request.content_type == 'application/json':
+        print(flask.request.data)
+        res_data = flask.request.data.decode('utf-8')
+        print(res_data)
+        data = pd.read_json(res_data)
     else:
         return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
 

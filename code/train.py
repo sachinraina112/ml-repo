@@ -19,7 +19,7 @@ from sklearn import tree
 # These are the paths to where SageMaker mounts interesting things in your container.
 
 # prefix = '/ml/'
-prefix = '../../data/'
+prefix = '../data/'
 
 input_path = prefix + 'input'
 output_path = os.path.join(prefix, 'output')
