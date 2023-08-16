@@ -12,20 +12,20 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: sudo docker build . --file Dockerfile --tag ml-repo:$(date +%s)
+      run: docker build . --file Dockerfile --tag ml-repo-im:$(date)
   job2-run:
     needs: job1-build
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
     - name: Run a container
-      run: sudo docker run --name mlcont -p 6666:6666 ml-repo
+      run: docker run --name mlcont -p 6666:6666 ml-repo-im:$(date)
   job3-test:
     needs: [job1-build, job2-run]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
     - name: test the inference end point
-      run: sudo docker exec mlcont sh && python code/test.py "http://localhost:6666"
+      run: docker exec mlcont sh && python code/test.py "http://localhost:6666"
       
     
