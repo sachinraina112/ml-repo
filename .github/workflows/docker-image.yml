@@ -16,3 +16,14 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ml-repo:$(date +%s)
+    - uses: actions/checkout@v3
+    - name: Run a container
+      run: docker run -it -p 6666:6666 ml-repo
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: test the inference end point
+      run: python code/test.py "http://localhost:6666"
+      
+    
