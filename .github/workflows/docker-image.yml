@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: sudo docker build -t ml-repo -f Dockerfile
+      run: sudo docker build -t ml-repo -f ml-repo/Dockerfile
   job2-run:
     needs: job1-build
     runs-on: self-hosted
