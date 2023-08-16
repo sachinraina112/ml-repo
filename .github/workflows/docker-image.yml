@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v1
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ml-repo:$(date +%s)
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     - name: Run a container
       run: docker run --name mlcont -p 6666:6666 ml-repo
   test:
