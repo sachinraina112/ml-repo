@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ml-repo-im:$(date)
+      run: docker build --file Dockerfile --tag ml-repo-im:$(date)
   job2-run:
     needs: job1-build
     runs-on: self-hosted
