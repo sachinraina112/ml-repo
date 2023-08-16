@@ -5,7 +5,7 @@ import requests
 
 
 
-def test(base_url)
+def test(base_url):
 # url = "http://localhost:6666/inference"
  
     url = base_url + '/inference'
