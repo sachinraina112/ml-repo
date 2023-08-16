@@ -18,12 +18,12 @@ jobs:
       run: docker build . --file Dockerfile --tag ml-repo:$(date +%s)
     - uses: actions/checkout@v3
     - name: Run a container
-      run: docker run -p 6666:6666 ml-repo
+      run: docker run --name mlcont -p 6666:6666 ml-repo
   test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: test the inference end point
-      run: python code/test.py "http://localhost:6666"
+      run: docker exec mlcont sh && python code/test.py "http://localhost:6666"
       
     
