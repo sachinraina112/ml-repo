@@ -49,7 +49,7 @@ app = flask.Flask(__name__)
 @app.route('/ping', methods=['GET'])
 def ping():
     """Determine if the container is working and healthy. In this sample container, we declare
-    it healthy if we can load the model successfully."""
+    it healthy if we can load given model successfully."""
     health = ScoringService.get_model() is not None  # You can insert a health check here
 
     status = 200 if health else 404
