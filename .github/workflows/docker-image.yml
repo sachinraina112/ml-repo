@@ -16,6 +16,7 @@ jobs:
   job2-run:
     needs: job1-build
     runs-on: self-hosted
+    timeout-minutes: 1
     steps:
     - uses: actions/checkout@v2
     - name: Run a container
