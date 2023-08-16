@@ -7,22 +7,22 @@ on:
     branches: [ "master" ]
 
 jobs:
-  using: "composite"
   job1-build:
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ml-repo:$(date +%s)
   job2-run:
     needs: job1-build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
     - name: Run a container
       run: docker run --name mlcont -p 6666:6666 ml-repo
   job3-test:
     needs: [job1-build, job2-run]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
     - name: test the inference end point
