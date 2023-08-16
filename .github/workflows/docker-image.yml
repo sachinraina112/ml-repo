@@ -7,10 +7,8 @@ on:
     branches: [ "master" ]
 
 jobs:
-  
-  
+  using: "composite"
   job1-build:
-    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
