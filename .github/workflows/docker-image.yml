@@ -1,6 +1,6 @@
 name: Docker Image CI
 env:
-  uuid: uuidgen
+  ip: ${{vars.SERVER_IP}}
 on:
   push:
     branches: [ "master" ]
@@ -11,7 +11,6 @@ jobs:
   job0-install:
     runs-on: self-hosted
     steps:
-    - run: echo "UUID sample is $uuid"
     - uses: actions/checkout@v1
     - name: Install Docker
       run: sudo chmod +777 code/* && sudo ./code/install_docker.sh
@@ -33,12 +32,12 @@ jobs:
   job3-test:
     if: ${{ always() }}
     needs: [job0-install, job1-build, job2-run]
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
     - uses: actions/checkout@v3
     - name: test the inference end point
-      run: sudo docker exec mlcont sh && ./code/test.sh 
+      run: sudo chmod +777 test/* && ./test/test.sh $ip
   job4-exit:
     needs: [job0-install, job1-build, job2-run, job3-test]
     runs-on: self-hosted
