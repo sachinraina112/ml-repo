@@ -1,7 +1,6 @@
 name: Docker Image CI
 env:
   ip: ${{vars.SERVER_IP}}
-  cont: ${{GITHUB_RUN_ID}}
 on:
   push:
     branches: [ "master" ]
@@ -27,6 +26,8 @@ jobs:
     runs-on: self-hosted
     timeout-minutes: 1
     steps:
+    - run: |
+        echo "{cont}={$GITHUB_RUN_ID}" >> "$GITHUB_ENV"
     - uses: actions/checkout@v2
     - name: Run a container
       run: sudo docker run --name $cont -p 6666:6666 ml-repo:$GITHUB_RUN_ID
@@ -46,6 +47,8 @@ jobs:
     runs-on: self-hosted
     timeout-minutes: 6
     steps:
+    - run: |
+        echo "{cont}={$GITHUB_RUN_ID}" >> "$GITHUB_ENV"
     - uses: actions/checkout@v3
     - name: exit from container
       run: sudo docker stop $cont && sudo docker rm $cont 
