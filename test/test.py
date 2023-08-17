@@ -5,10 +5,10 @@ import requests
 
 
 
-def test(base_url):
+def test(ip):
 # url = "http://localhost:6666/inference"
- 
-    url = base_url + '/inference'
+    port = '6666'
+    url = "http://" + str(ip) + ":" + port + '/inference'
     df = pd.DataFrame([[0,5,7,6]])
 
     res = df.to_json(orient='records')
