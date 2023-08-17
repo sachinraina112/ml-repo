@@ -32,9 +32,10 @@ jobs:
     if: ${{ always() }}
     needs: [job0-install, job1-build, job2-run]
     runs-on: self-hosted
+    timeout-minutes: 6
     steps:
     - uses: actions/checkout@v3
     - name: test the inference end point
-      run: sudo docker exec mlcont sh && python code/test.py "http://localhost:6666"
+      run: sudo docker exec mlcont sh && ./code/test.sh 
       
     

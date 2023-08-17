@@ -1,3 +1,9 @@
 #/bin/bash
 echo "Starting training"
-python train.py
+{ # try
+
+    python train.py
+    #save your output
+
+} || { python3 train.py
+}

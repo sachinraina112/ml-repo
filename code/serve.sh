@@ -1,3 +1,10 @@
 #/bin/bash
 echo "Serving Inference"
-python serve.py
+{ # try
+
+    python serve.py
+    #save your output
+
+} || { python3 serve.py
+}
+
