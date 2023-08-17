@@ -1,7 +1,7 @@
 name: Docker Image CI
 env:
   ip: ${{vars.SERVER_IP}}
-  cont: "mlcont" + $GITHUB_RUN_ID
+  cont: f"mlcont-{$GITHUB_RUN_ID}"
 on:
   push:
     branches: [ "master" ]
