@@ -33,9 +33,10 @@ jobs:
     - name: RunContainer
       continue-on-error: true
       run: timeout 1 sudo docker run -p 6666:6666 ml-repo:$GITHUB_RUN_ID
+    - name: success
     - id: setSuccess
     - if: steps.job2.outcome == 'cancelled'
-      run: exit 0
+    - run: exit 0
       
   job3-test:
     if: ${{ always() }}
