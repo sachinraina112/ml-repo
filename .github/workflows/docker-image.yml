@@ -27,10 +27,10 @@ jobs:
     continue-on-error: true
     timeout-minutes: 1.5
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: RunContainer
       run: sudo docker run -p 6666:6666 ml-repo:$GITHUB_RUN_ID   
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v1
     - name: check status
       if: steps[*].outcome == 'cancelled' || ${{ cancelled() }}
       run: exit 0
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v1
     - name: test the inference end point
       run:  sudo chmod +777 test/* && sudo pip install -r test/req_test.txt && ./test/test.sh $ip
       

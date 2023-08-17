@@ -15,7 +15,7 @@ def test(ip):
     pj = json.loads(res)
     response = requests.post(url, json=pj)
     if response.status_code == 200:
-        print("Test Succeeded")
+        print(f"Test Succeeded with status code {response.status_code}")
         return True
     else:
         print("Test Failed")
