@@ -28,6 +28,7 @@ jobs:
       - continue-on-error: true
         timeout-minutes: 1.5
       - name: RunContainer
+      - uses: actions/checkout@v2
       - id: rc
         run: sudo docker run -p 6666:6666 ml-repo:$GITHUB_RUN_ID
       - uses: actions/checkout@v2
