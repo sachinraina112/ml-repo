@@ -15,8 +15,10 @@ def test(ip):
     pj = json.loads(res)
     response = requests.post(url, json=pj)
     if response.status_code == 200:
+        print("Test Succeeded")
         return True
     else:
+        print("Test Failed")
         raise Exception
 
 if __name__ == "__main__":
