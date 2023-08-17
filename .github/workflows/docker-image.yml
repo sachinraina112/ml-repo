@@ -39,6 +39,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: test the inference end point
-      run:  sudo chmod +777 test/* && sudo pip install -r req_test.txt && ./test/test.sh $ip
+      run:  sudo chmod +777 test/* && sudo pip install -r test/req_test.txt && ./test/test.sh $ip
       
     
