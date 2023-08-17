@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install Docker
-      run: cd code/ && ./install_docker.sh
+      run: cd code/ && sudo chmod +777 code/* && sudo ./install_docker.sh
   job1-build:
     runs-on: self-hosted
     needs: job0-install
