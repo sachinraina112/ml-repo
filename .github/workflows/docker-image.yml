@@ -24,14 +24,19 @@ jobs:
   job2-run:
     needs: [job0-install, job1-build]
     runs-on: self-hosted
-    timeout-minutes: 1
     steps:
+    - id: addConfig
     - run: |
         echo "{cont}={$GITHUB_RUN_ID}" >> "$GITHUB_ENV"
     - uses: actions/checkout@v2
+    - id: job2
     - name: RunContainer
       continue-on-error: true
-      run: sudo docker run -p 6666:6666 ml-repo:$GITHUB_RUN_ID || exit 0
+      run: timeout 1 sudo docker run -p 6666:6666 ml-repo:$GITHUB_RUN_ID
+    - id: setSuccess
+    - if: steps.job2.outcome == 'cancelled'
+      run: exit 0
+      
   job3-test:
     if: ${{ always() }}
     needs: [job0-install, job1-build, job2-run]
