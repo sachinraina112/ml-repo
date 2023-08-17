@@ -7,14 +7,21 @@ on:
     branches: [ "master" ]
 
 jobs:
+  job0-install:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Docker
+      run: cd code/ && ./install_docker.sh
   job1-build:
     runs-on: self-hosted
+    needs: job0-install
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: sudo docker build -t ml-repo .
   job2-run:
-    needs: job1-build
+    needs: [job0-install, job1-build]
     runs-on: self-hosted
     timeout-minutes: 1
     steps:
@@ -22,7 +29,7 @@ jobs:
     - name: Run a container
       run: sudo docker run --name mlcont -p 6666:6666 ml-repo
   job3-test:
-    needs: [job1-build, job2-run]
+    needs: [job0-install, job1-build, job2-run]
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
