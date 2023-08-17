@@ -29,6 +29,7 @@ jobs:
     - name: Run a container
       run: sudo docker run --name mlcont -p 6666:6666 ml-repo
   job3-test:
+    if: ${{ always() }}
     needs: [job0-install, job1-build, job2-run]
     runs-on: self-hosted
     steps:
