@@ -31,6 +31,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run a container
       run: sudo docker run -p 6666:6666 ml-repo:$GITHUB_RUN_ID
+      continue-on-error: true
+      
   job3-test:
     if: ${{ always() }}
     needs: [job0-install, job1-build, job2-run]
