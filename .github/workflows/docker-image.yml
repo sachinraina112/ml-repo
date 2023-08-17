@@ -1,7 +1,7 @@
 name: Docker Image CI
 env:
   ip: ${{vars.SERVER_IP}}
-  cont: f"mlcont-{$GITHUB_RUN_ID}"
+  cont: mlcont-$GITHUB_RUN_ID
 on:
   push:
     branches: [ "master" ]
@@ -36,9 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
+    - run : sudo chmod +777 test/* && sudo pip install -r req_test.txt
     - uses: actions/checkout@v3
     - name: test the inference end point
-      run: sudo chmod +777 test/* && ./test/test.sh $ip
+      run:  ./test/test.sh $ip
   job4-exit:
     if: ${{ always() }}
     needs: [job0-install, job1-build, job2-run, job3-test]
