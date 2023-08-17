@@ -30,27 +30,15 @@ jobs:
         echo "{cont}={$GITHUB_RUN_ID}" >> "$GITHUB_ENV"
     - uses: actions/checkout@v2
     - name: Run a container
-      run: sudo docker run --name $cont -p 6666:6666 ml-repo:$GITHUB_RUN_ID
+      run: sudo docker run -p 6666:6666 ml-repo:$GITHUB_RUN_ID
   job3-test:
     if: ${{ always() }}
     needs: [job0-install, job1-build, job2-run]
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
-    - run : sudo chmod +777 test/* && sudo pip install -r req_test.txt
     - uses: actions/checkout@v3
     - name: test the inference end point
-      run:  ./test/test.sh $ip
-  job4-exit:
-    if: ${{ always() }}
-    needs: [job0-install, job1-build, job2-run, job3-test]
-    runs-on: self-hosted
-    timeout-minutes: 6
-    steps:
-    - run: |
-        echo "{cont}={$GITHUB_RUN_ID}" >> "$GITHUB_ENV"
-    - uses: actions/checkout@v3
-    - name: exit from container
-      run: sudo docker stop $cont && sudo docker rm $cont 
+      run:  sudo chmod +777 test/* && sudo pip install -r req_test.txt && ./test/test.sh $ip
       
     
