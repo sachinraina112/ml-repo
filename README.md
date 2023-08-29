@@ -61,6 +61,6 @@ Eventually this is packaged and served as REST API.(Refer *code* directory)
 * Wrapped a machine learning inference service as a REST call.
 * Just mere push to master branch of the repository invokes the build, test and deploy steps automatically.
 * Hence obtaining CI/CD for this sample ML use case.
-* Docker is used as a contaierized tool hence there is a scope for using scaled set of VMs or even an orchestator like kubernetes.(Stay tuned :)
+* Docker is used as a containerized tool hence there is a scope for using scaled set of VMs or even an orchestator like kubernetes.(Stay tuned :)
 
       ==End of Document==
