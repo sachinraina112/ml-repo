@@ -13,7 +13,7 @@ In this project simple machine learning model is used to infer over a REST API c
 
 **Flask:** Popular Framework in Python (apart from Django,Fast API) used to wrap any service into a REST API service. [For more details refer.](https://flask.palletsprojects.com/en/2.3.x/)
 
-**Terraform:** Iaac (Infrastructure as a code) platform which provisions resources from available cloud service providers based on param request in the form of JSON like language called HCL (HashiCorp Configuration Language).[For more details refer.](www.terraform.io)
+**Terraform:** Iaac (Infrastructure as a code) platform which provisions resources from available cloud service providers based on param request in the form of JSON like language called HCL (HashiCorp Configuration Language).[For more details refer.](https://www.terraform.io)
 
 **Cloud:** Azure, AWS, GCP, DigitalOcean, Alibaba etc. are some cloud providers that provide resources for computations, storage or any other services like data pipeline, worklows, inbuilt AI/ML etc. [For more details refer.](https://azure.microsoft.com/en-us/)
 
@@ -21,7 +21,7 @@ In this project simple machine learning model is used to infer over a REST API c
 
 **Github Actions:** The most important aspect of this CI/CD project is github actions for serving as a workflow manager and actor to use resources provisioned and invoke build, test and deploy features. (all done basically just by a YAML workflow file) [For more details refer.](https://docs.github.com/en/actions)
 
-**Docker:** Guilty of being the most famous contaninerized software platform/tool to package everything from dependency to codebase and even runtime. [For more details refer.](www.docker.com)
+**Docker:** Guilty of being the most famous contaninerized software platform/tool to package everything from dependency to codebase and even runtime. [For more details refer.](https://www.docker.com)
 
 ## Machine Learning Inference Service: Details
 
